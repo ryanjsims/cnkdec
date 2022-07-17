@@ -40,9 +40,15 @@ namespace lzham
    const int64 INT64_MAX = (int64)0x7FFFFFFFFFFFFFFFULL; //9223372036854775807i64;
 
 #if LZHAM_64BIT_POINTERS
+#ifdef __GNUC__
+   typedef uint64 uint_ptr;
+   typedef uint64 uint32_ptr;
+   typedef int64  signed_size_t;
+#elif
    typedef unsigned __int64 uint_ptr;
    typedef unsigned __int64 uint32_ptr;
    typedef signed __int64   signed_size_t;
+#endif
    typedef uint64 ptr_bits_t;
    const ptr_bits_t PTR_BITS_XOR = 0xDB0DD4415C87DCF7ULL;
 #else
